@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import mockupImage from '@/assets/kalorix-mockup-hero.jpg';
+
 
 export const Hero = () => {
   const [formData, setFormData] = useState({
@@ -94,8 +94,8 @@ export const Hero = () => {
           <div className="relative animate-fade-up" style={{ animationDelay: '0.2s' }}>
             <div className="relative animate-float">
               <img
-                src={mockupImage}
-                alt="Kalorix App Mockup"
+                src="/lovable-uploads/73e84d6c-82ad-4ed4-9469-3ca846af08cc.png"
+                alt="Kalorix App - Análise nutricional de alimentos"
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
               <div className="absolute inset-0 bg-gradient-glow rounded-2xl"></div>

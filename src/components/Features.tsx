@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Camera, Scan, BarChart3, Lightbulb } from 'lucide-react';
-import appFeaturesImage from '@/assets/app-features.jpg';
+
 
 const features = [
   {
@@ -34,8 +34,8 @@ export const Features = () => {
           {/* Mockup */}
           <div className="animate-fade-up">
             <img
-              src={appFeaturesImage}
-              alt="Funcionalidades do Kalorix"
+              src="/lovable-uploads/73e84d6c-82ad-4ed4-9469-3ca846af08cc.png"
+              alt="Kalorix App - Análise nutricional em tempo real"
               className="w-full h-auto max-w-md mx-auto rounded-2xl shadow-lg"
             />
           </div>
