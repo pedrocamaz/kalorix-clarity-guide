@@ -4,18 +4,24 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import mockupImage from '@/assets/kalorix-mockup-hero.jpg';
+import logoImage from '@/assets/kalorix-logo.png';
 
 export const Hero = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    email: ''
+    email: '',
+    coupon: ''
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success('Obrigado! Em breve entraremos em contato.');
-    setFormData({ name: '', phone: '', email: '' });
+    if (formData.coupon) {
+      toast.success(`Obrigado! Cupom ${formData.coupon} aplicado. Em breve entraremos em contato.`);
+    } else {
+      toast.success('Obrigado! Em breve entraremos em contato.');
+    }
+    setFormData({ name: '', phone: '', email: '', coupon: '' });
   };
 
   const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +33,11 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-gradient-glow"></div>
       
       <div className="container mx-auto px-4 pt-20 pb-12 relative z-10">
+        {/* Logo at the top */}
+        <div className="flex justify-center mb-12 animate-fade-up">
+          <img src={logoImage} alt="Kalorix Logo" className="h-24 w-auto" />
+        </div>
+        
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
           <div className="space-y-8 animate-fade-up">
@@ -42,6 +53,19 @@ export const Hero = () => {
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4 bg-card p-6 rounded-2xl shadow-lg">
               <h3 className="text-xl font-semibold text-foreground">Comece sua transformação agora</h3>
+              
+              {/* Coupon field at the top */}
+              <div className="p-4 bg-primary/10 rounded-lg">
+                <Label htmlFor="coupon" className="text-sm font-semibold text-primary">Tem um cupom de desconto?</Label>
+                <Input
+                  id="coupon"
+                  type="text"
+                  placeholder="Digite seu cupom"
+                  value={formData.coupon}
+                  onChange={handleChange('coupon')}
+                  className="mt-1"
+                />
+              </div>
               
               <div className="space-y-3">
                 <div>
