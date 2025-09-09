@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import mockupImage from '/lovable-uploads/7bfa2357-8743-4823-907c-dae855ecfabe.png';
+import mockupImage from '@/assets/kalorix-mockup-hero.jpg';
 
 export const Hero = () => {
   const [formData, setFormData] = useState({

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Camera, Scan, BarChart3, Lightbulb } from 'lucide-react';
-import appFeaturesImage from '/lovable-uploads/7bfa2357-8743-4823-907c-dae855ecfabe.png';
+import appFeaturesImage from '@/assets/app-features.jpg';
 
 const features = [
   {
