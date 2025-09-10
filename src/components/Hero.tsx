@@ -33,45 +33,81 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-cream overflow-hidden">
+    <section className="relative bg-gradient-cream overflow-hidden">
       <div className="absolute inset-0 bg-gradient-glow"></div>
-      
-      <div className="container mx-auto px-4 pt-20 pb-12 relative z-10">
+      <div className="container mx-auto px-3 sm:px-4 relative z-10">
         {/* Logo at the top */}
-        <div className="flex justify-center mb-12 animate-fade-up">
-          <img src={logoImage} alt="Kalorix Logo" className="h-24 w-auto" />
+        <div className="flex justify-center pt-6 pb-4 sm:pt-8 sm:pb-6 animate-fade-up">
+          <img src={logoImage} alt="Kalorix Logo" className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto drop-shadow-lg" />
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Content */}
-          <div className="space-y-8 animate-fade-up">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+          {/* Mobile Layout */}
+          <div className="lg:hidden">
+            {/* Mockup for Mobile */}
+            <div className="relative flex justify-center mb-6 animate-fade-up">
+              <div className="relative animate-float w-2/3 max-w-[240px]">
+                <img
+                  src={mockupImage}
+                  alt="Kalorix App Mockup"
+                  className="w-full h-auto rounded-2xl shadow-2xl border-2 border-white/50"
+                />
+                <div className="absolute inset-0 bg-gradient-glow rounded-2xl pointer-events-none opacity-40"></div>
+              </div>
+            </div>
+            
+            {/* Content for Mobile */}
+            <div className="text-center space-y-5 pb-8 animate-fade-up" style={{ animationDelay: '0.2s' }}>
+              <div className="space-y-3">
+                <h1 className="text-2xl sm:text-3xl font-bold text-foreground leading-tight px-2">
+                  Transforme o <span className="text-primary">invisível</span> da comida em <span className="text-primary">clareza</span> para a sua vida.
+                </h1>
+                <p className="text-sm sm:text-base text-muted-foreground px-4 leading-relaxed">
+                  O app que mostra o que há por trás do seu prato, de forma simples e elegante.
+                </p>
+              </div>
+              
+              {/* CTA for Mobile */}
+              <div className="mx-4">
+                <div className="bg-white/95 p-4 rounded-2xl shadow-xl border border-white/60 backdrop-blur-sm">
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Comece sua transformação agora</h3>
+                  <Button onClick={handleClick} variant="cta" size="lg" className="w-full text-base py-4 font-medium rounded-xl">
+                    Quero experimentar agora
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden lg:block lg:order-1 space-y-6 animate-fade-up text-left">
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+              <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                 Transforme o <span className="text-primary">invisível</span> da comida em <span className="text-primary">clareza</span> para a sua vida.
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground">
+              <p className="text-xl text-muted-foreground max-w-xl">
                 O app que mostra o que há por trás do seu prato, de forma simples e elegante.
               </p>
             </div>
-
-            {/* CTA sem formulário */}
-            <div className="space-y-4 bg-card p-6 rounded-2xl shadow-lg">
-              <h3 className="text-xl font-semibold text-foreground">Comece sua transformação agora</h3>
-              <Button onClick={handleClick} variant="cta" size="lg" className="w-full">
+            
+            {/* CTA for Desktop */}
+            <div className="bg-card/90 p-6 rounded-2xl shadow-xl border border-border max-w-md">
+              <h3 className="text-xl font-semibold text-foreground mb-4">Comece sua transformação agora</h3>
+              <Button onClick={handleClick} variant="cta" size="lg" className="w-full text-lg py-6 font-medium">
                 Quero experimentar agora
               </Button>
             </div>
           </div>
 
-          {/* Right Column - Mockup */}
-          <div className="relative animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <div className="relative animate-float">
+          {/* Mockup for Desktop */}
+          <div className="hidden lg:flex lg:order-2 lg:justify-center animate-fade-up" style={{ animationDelay: '0.2s' }}>
+            <div className="relative animate-float max-w-[480px]">
               <img
                 src={mockupImage}
                 alt="Kalorix App Mockup"
-                className="w-full h-auto rounded-2xl shadow-2xl"
+                className="w-full h-auto rounded-3xl shadow-2xl border-4 border-white/60"
               />
-              <div className="absolute inset-0 bg-gradient-glow rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-glow rounded-3xl pointer-events-none opacity-60"></div>
             </div>
           </div>
         </div>
