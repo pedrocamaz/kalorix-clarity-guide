@@ -30,7 +30,7 @@ const features = [
 export const Features = () => {
   const handleClick = async () => {
     try {
-      const res = await fetch('https://caloscan-n8n-webhook.msruy0.easypanel.host/webhook/landingpage', {
+      const res = await fetch(import.meta.env.VITE_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
