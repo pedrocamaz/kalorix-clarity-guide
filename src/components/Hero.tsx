@@ -1,31 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import mockupImage from '@/assets/kalorix-mockup-hero.jpg';
 import logoImage from '@/assets/kalorix-logo.png';
 
 export const Hero = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    coupon: ''
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (formData.coupon) {
-      toast.success(`Obrigado! Cupom ${formData.coupon} aplicado. Em breve entraremos em contato.`);
-    } else {
-      toast.success('Obrigado! Em breve entraremos em contato.');
+  const handleClick = async () => {
+    try {
+      const res = await fetch('https://caloscan-n8n-webhook.msruy0.easypanel.host/webhook/landingpage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: 'cta_click',
+          source: 'hero',
+          url: typeof window !== 'undefined' ? window.location.href : undefined,
+          ts: Date.now(),
+        }),
+      });
+      if (res.ok) {
+        const data = await res.json().catch(() => null);
+        if (data && data.url) {
+          window.location.href = data.url;
+          return;
+        }
+        toast.success('Obrigado! Vamos te contatar em breve.');
+      } else {
+        toast.error('Não foi possível enviar agora. Tente novamente.');
+      }
+    } catch (err) {
+      toast.error('Não foi possível enviar agora. Tente novamente.');
     }
-    setFormData({ name: '', phone: '', email: '', coupon: '' });
-  };
-
-  const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData(prev => ({ ...prev, [field]: e.target.value }));
   };
 
   return (
@@ -50,68 +54,13 @@ export const Hero = () => {
               </p>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4 bg-card p-6 rounded-2xl shadow-lg">
+            {/* CTA sem formulário */}
+            <div className="space-y-4 bg-card p-6 rounded-2xl shadow-lg">
               <h3 className="text-xl font-semibold text-foreground">Comece sua transformação agora</h3>
-              
-              {/* Coupon field at the top */}
-              <div className="p-4 bg-primary/10 rounded-lg">
-                <Label htmlFor="coupon" className="text-sm font-semibold text-primary">Tem um cupom de desconto?</Label>
-                <Input
-                  id="coupon"
-                  type="text"
-                  placeholder="Digite seu cupom"
-                  value={formData.coupon}
-                  onChange={handleChange('coupon')}
-                  className="mt-1"
-                />
-              </div>
-              
-              <div className="space-y-3">
-                <div>
-                  <Label htmlFor="name">Nome completo</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Seu nome"
-                    value={formData.name}
-                    onChange={handleChange('name')}
-                    required
-                    className="mt-1"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="phone">WhatsApp</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="(11) 99999-9999"
-                    value={formData.phone}
-                    onChange={handleChange('phone')}
-                    required
-                    className="mt-1"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="email">E-mail</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="seu@email.com"
-                    value={formData.email}
-                    onChange={handleChange('email')}
-                    required
-                    className="mt-1"
-                  />
-                </div>
-              </div>
-
-              <Button type="submit" variant="cta" size="lg" className="w-full">
+              <Button onClick={handleClick} variant="cta" size="lg" className="w-full">
                 Quero experimentar agora
               </Button>
-            </form>
+            </div>
           </div>
 
           {/* Right Column - Mockup */}

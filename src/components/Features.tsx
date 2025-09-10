@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Camera, Scan, BarChart3, Lightbulb } from 'lucide-react';
 import appFeaturesImage from '@/assets/app-features.jpg';
+import { toast } from 'sonner';
 
 const features = [
   {
@@ -27,6 +28,32 @@ const features = [
 ];
 
 export const Features = () => {
+  const handleClick = async () => {
+    try {
+      const res = await fetch('https://caloscan-n8n-webhook.msruy0.easypanel.host/webhook/landingpage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: 'cta_click',
+          source: 'features',
+          url: typeof window !== 'undefined' ? window.location.href : undefined,
+          ts: Date.now(),
+        }),
+      });
+      if (res.ok) {
+        const data = await res.json().catch(() => null);
+        if (data && data.url) {
+          window.location.href = data.url;
+          return;
+        }
+        toast.success('Obrigado! Vamos te contatar em breve.');
+      } else {
+        toast.error('Não foi possível enviar agora. Tente novamente.');
+      }
+    } catch (err) {
+      toast.error('Não foi possível enviar agora. Tente novamente.');
+    }
+  };
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -75,7 +102,7 @@ export const Features = () => {
               ))}
             </div>
 
-            <Button variant="cta" size="lg">
+            <Button onClick={handleClick} variant="cta" size="lg">
               Quero começar agora
             </Button>
           </div>
