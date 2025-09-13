@@ -5,7 +5,13 @@ import mockupImage from '@/assets/kalorix-mockup-hero.jpg';
 import logoImage from '@/assets/kalorix-logo.png';
 
 export const Hero = () => {
-  const handleClick = async () => {
+  const handleWhatsAppClick = () => {
+    // Replace with your actual WhatsApp link for the free version
+    const whatsappUrl = "https://wa.me/5521982482829?text=Olá! Quero experimentar a versão gratuita do Kalorix";
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleSubscriptionClick = async () => {
     try {
       const res = await fetch(import.meta.env.VITE_WEBHOOK_URL, {
         method: 'POST',
@@ -71,9 +77,26 @@ export const Hero = () => {
               <div className="mx-4">
                 <div className="bg-white/95 p-4 rounded-2xl shadow-xl border border-white/60 backdrop-blur-sm">
                   <h3 className="text-lg font-semibold text-foreground mb-3">Comece sua transformação agora</h3>
-                  <Button onClick={handleClick} variant="cta" size="lg" className="w-full text-base py-4 font-medium rounded-xl">
-                    Quero experimentar agora
-                  </Button>
+                  
+                  {/* Free version button */}
+                  <div className="mb-3">
+                    <Button onClick={handleWhatsAppClick} variant="outline" size="lg" className="w-full text-base py-4 font-medium rounded-xl border-2">
+                      Quero experimentar agora
+                    </Button>
+                    <div className="flex justify-center mt-2">
+                      <span className="text-sm font-semibold text-green-600 bg-green-100 px-2 py-1 rounded-full">GRÁTIS</span>
+                    </div>
+                  </div>
+                  
+                  {/* Paid version button */}
+                  <div>
+                    <Button onClick={handleSubscriptionClick} variant="cta" size="lg" className="w-full text-base py-4 font-medium rounded-xl">
+                      Assine agora
+                    </Button>
+                    <div className="flex justify-center mt-2">
+                      <span className="text-sm font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full">R$ 27,90</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -93,9 +116,26 @@ export const Hero = () => {
             {/* CTA for Desktop */}
             <div className="bg-card/90 p-6 rounded-2xl shadow-xl border border-border max-w-md">
               <h3 className="text-xl font-semibold text-foreground mb-4">Comece sua transformação agora</h3>
-              <Button onClick={handleClick} variant="cta" size="lg" className="w-full text-lg py-6 font-medium">
-                Quero experimentar agora
-              </Button>
+              
+              {/* Free version button */}
+              <div className="mb-4">
+                <Button onClick={handleWhatsAppClick} variant="outline" size="lg" className="w-full text-lg py-6 font-medium border-2">
+                  Quero experimentar agora de graça
+                </Button>
+                <div className="flex justify-center mt-3">
+                  <span className="text-sm font-semibold text-green-600 bg-green-100 px-3 py-1 rounded-full">GRÁTIS</span>
+                </div>
+              </div>
+              
+              {/* Paid version button */}
+              <div>
+                <Button onClick={handleSubscriptionClick} variant="cta" size="lg" className="w-full text-lg py-6 font-medium">
+                  Assine agora
+                </Button>
+                <div className="flex justify-center mt-3">
+                  <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">R$ 27,90</span>
+                </div>
+              </div>
             </div>
           </div>
 
