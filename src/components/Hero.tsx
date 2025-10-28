@@ -7,7 +7,7 @@ import logoImage from '@/assets/kalorix-logo.png';
 export const Hero = () => {
   const handleWhatsAppClick = () => {
     // Replace with your actual WhatsApp link for the free version
-    const whatsappUrl = "https://wa.me/5521982482829?text=Olá! Quero experimentar a versão gratuita do Kalorix";
+    const whatsappUrl = "https://trial.kalorix.com.br/";
     window.open(whatsappUrl, '_blank');
   };
 
