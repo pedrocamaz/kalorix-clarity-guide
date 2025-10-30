@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { CTABanner } from '@/components/ui/cta-banner';
 import { toast } from 'sonner';
 import mockupImage from '@/assets/kalorix-mockup-hero.jpg';
 import logoImage from '@/assets/kalorix-logo.png';
@@ -45,6 +46,16 @@ export const Hero = () => {
         {/* Logo at the top */}
         <div className="flex justify-center pt-6 pb-4 sm:pt-8 sm:pb-6 animate-fade-up">
           <img src={logoImage} alt="Kalorix Logo" className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto drop-shadow-lg" />
+        </div>
+        
+        {/* CTA Banner */}
+        <div className="flex justify-center pb-6 sm:pb-8">
+          <CTABanner 
+            text="Quero Assinar Agora 🔥"
+            variant="accent"
+            onClick={handleSubscriptionClick}
+            className="max-w-md mx-4"
+          />
         </div>
         
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
